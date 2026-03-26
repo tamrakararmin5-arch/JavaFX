@@ -1,25 +1,18 @@
 package application;
 
+/**
+ * Recommendable.java  -  Interface
+ *
+ * OOP: Abstraction - defines WHAT any recommendable item must provide,
+ * without specifying HOW. Any class implementing this is guaranteed to
+ * expose a title, creator, genre, summary, and detail text, making it
+ * possible to build generic UI components that work for any media type.
+ */
 public interface Recommendable {
 
-    /** Returns the primary title / name of this item. */
-    String getTitle();
-
-    /** Returns the creator (author, director, artist, etc.). */
-    String getCreator();
-
-    /** Returns the genre or category this item belongs to. */
-    String getGenre();
-
-    /**
-     * Returns a short one-line summary suitable for list display.
-     * Example: "Dune by Frank Herbert  (412 pages)  [Sci-Fi]"
-     */
-    String getSummary();
-
-    /**
-     * Returns the full detail text shown in the info popup.
-     * Implementations may format this however they like.
-     */
-    String getDetailText();
+    String getTitle();       // Primary name of this item
+    String getCreator();     // Author, director, artist, etc.
+    String getGenre();       // Genre or category
+    String getSummary();     // One-line display string for lists
+    String getDetailText();  // Full detail string for popups
 }
