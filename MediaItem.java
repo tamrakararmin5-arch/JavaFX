@@ -1,38 +1,42 @@
 package application;
 
+/**
+ * MediaItem.java  -  Abstract Class
+ *
+ * OOP principles:
+ *   Abstraction  - declared abstract; cannot be instantiated directly
+ *   Inheritance  - Book extends this and inherits genre + description
+ *   Encapsulation- private fields, accessed only through getters/setters
+ *   Polymorphism - getDetailText() is abstract; each subclass overrides it
+ *
+ * Any future media type (Movie, Podcast) can extend this class
+ * and get genre/description for free.
+ */
 public abstract class MediaItem implements Recommendable {
 
-    // ── Shared fields (inherited by all subclasses) ───────────────────────────
-    private final String genre;
-    private final String description;
+    // Private fields - accessed only via getters and setters (Encapsulation)
+    private String genre;
+    private String description;
 
-    // ── Constructor ───────────────────────────────────────────────────────────
+    // Constructor
     protected MediaItem(String genre, String description) {
         this.genre       = genre;
         this.description = description;
     }
 
-    // ── Concrete getters (inherited, no need to override) ─────────────────────
-    @Override
-    public String getGenre() {
-        return genre;
-    }
+    // Getters
+    @Override public String getGenre()       { return genre; }
+    public       String getDescription()     { return description; }
 
-    public String getDescription() {
-        return description;
-    }
+    // Setters - allow subclasses and admin panel to update values
+    public void setGenre(String genre)             { this.genre = genre; }
+    public void setDescription(String description) { this.description = description; }
 
-    // ── Abstract method: each subclass formats its own detail text ────────────
-    /**
-     * Returns the full detail string for the info popup.
-     * Subclasses MUST override this to provide type-specific formatting.
-     * This is the Polymorphism hook - Book formats it one way,
-     * a future Movie class would format it differently.
-     */
+    // Abstract - every subclass MUST implement its own version (Polymorphism)
     @Override
     public abstract String getDetailText();
 
-    // ── toString for debugging ────────────────────────────────────────────────
+    // toString - useful for debugging and logging
     @Override
     public String toString() {
         return getClass().getSimpleName() +
